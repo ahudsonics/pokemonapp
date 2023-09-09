@@ -18,8 +18,13 @@ app.get('/pokemon/:id', (req, res) => {
     const id = req.params.id;
     const selectedPokemon = pokemon[id];
   
-    res.send(`You selected: ${selectedPokemon.name}`);
-  });  
+    const showHtml = ReactDOMServer.renderToString(
+      <Show pokemon={selectedPokemon} />
+    );
+  
+    res.send(showHtml);
+  });
+    
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
